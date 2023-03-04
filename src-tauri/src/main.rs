@@ -6,12 +6,6 @@ use sysinfo::{
     SystemExt,
 };
 
-// Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-#[tauri::command]
-fn greet(name: &str) -> String {
-    format!("Hello, {}! You've been greeted from Rust!", name)
-}
-
 #[tauri::command]
 fn sys_info() -> String {
     // let mut sys = System::new_all();
@@ -34,8 +28,6 @@ fn sys_info() -> String {
     // to get components temperature
     let components = sys.components();
 
-    for component in components {}
-
     format!(
         "total memory = {}, used_memory = {}, sys name = {}",
         sys.total_memory(),
@@ -46,7 +38,6 @@ fn sys_info() -> String {
 
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![greet])
         .invoke_handler(tauri::generate_handler![sys_info])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
