@@ -1,0 +1,22 @@
+.app-root {
+  height: 100%;
+  display: grid;
+  grid-template-areas: 
+    "header"
+    "main"
+    "footer"
+  ;
+  grid-template-rows: 50px 1fr 30px;
+}
+
+.header {
+  grid-area: header;
+}
+
+.main {
+  grid-area: main;
+}
+
+.footer {
+  grid-area: footer;
+}
