@@ -37,6 +37,6 @@ pub fn init_temperatures_info(window: &Window) {
         window
             .emit("components-temperature", &component_temperatures)
             .unwrap();
-        std::thread::sleep(Duration::from_millis(2000));
+        std::thread::sleep(Duration::from_secs(1));
     });
 }

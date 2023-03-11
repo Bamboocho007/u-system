@@ -1,44 +1,15 @@
-import { createSignal, onMount, Show } from "solid-js";
-import { invoke } from "@tauri-apps/api/tauri";
-
-interface InternalLoadAvg {
-  one: number;
-  five: number;
-  fifteen: number;
-}
-
-interface CommonInfo {
-  name?: string;
-  long_os_version?: string;
-  kernel_version?: string;
-  uptime: number;
-  distribution_id: string;
-  load_average: InternalLoadAvg;
-  boot_time: number;
-  os_version: string;
-  total_memory: number;
-  available_memory: number;
-  free_memory: number;
-  used_memory: number;
-  used_swap: number;
-  total_swap: number;
-  free_swap: number;
-}
+import { Show } from "solid-js";
+import { CommonInfo } from "../api/interfaces/commonInfo";
+import useFetchData from "../api/hooks/useFetchData";
 
 export default function Common() {
-  const [commonInfo, setCommonInfo] = createSignal<CommonInfo | undefined>(
-    undefined
-  );
-
-  onMount(async () =>
-    setCommonInfo(await invoke<CommonInfo>("get_common_data"))
-  );
+  const { data } = useFetchData<CommonInfo>("get_common_data");
 
   return (
     <div class="container">
       <div class="row">
         <img src="/" alt="processor" />
-        <Show when={commonInfo()} keyed fallback={<div>Загрузка...</div>}>
+        <Show when={data()} keyed fallback={<div>Загрузка...</div>}>
           {(info) => (
             <div>
               <p class="row">

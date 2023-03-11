@@ -8,15 +8,17 @@ import { Cpu } from "./cpu/Cpu";
 
 function App() {
   return (
-    <div class="app-root container">
+    <div class="app-root">
       <Router>
         <Header />
         <main>
-          <Routes>
-            <Route path="/" component={Common} />
-            <Route path="/cpu" component={Cpu} />
-            <Route path="/temperatures" component={Temperatures} />
-          </Routes>
+          <div class="container">
+            <Routes>
+              <Route path="/" component={Common} />
+              <Route path="/cpu" component={Cpu} />
+              <Route path="/temperatures" component={Temperatures} />
+            </Routes>
+          </div>
         </main>
         <Footer />
       </Router>

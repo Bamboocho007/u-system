@@ -14,9 +14,6 @@ export default function Header(): JSX.Element {
         <A href="/temperatures" activeClass="active">
           Temperatures
         </A>
-        <A href="/second-component" activeClass="active">
-          Other 2
-        </A>
       </nav>
     </div>
   );

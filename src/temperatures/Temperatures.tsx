@@ -1,28 +1,12 @@
-import { createSignal, For, onCleanup } from "solid-js";
+import { For } from "solid-js";
 import { JSX } from "solid-js/jsx-runtime";
-import { appWindow } from "@tauri-apps/api/window";
-import { Event } from "@tauri-apps/api/event";
-
-interface ComponentTemperature {
-  max: number;
-  critical: number | null;
-  temperature: number;
-  label: string;
-}
+import { ComponentTemperature } from "../api/interfaces/componentTemperature";
+import useListener from "../api/hooks/useListener";
 
 export default function Temperatures(): JSX.Element {
-  const [components, setComponents] = createSignal<
-    ComponentTemperature[] | undefined
-  >(undefined);
-
-  const unsubscribe = appWindow.listen(
-    "components-temperature",
-    (data: Event<ComponentTemperature[]>) => {
-      setComponents(data.payload);
-    }
+  const components = useListener<ComponentTemperature[]>(
+    "components-temperature"
   );
-
-  onCleanup(() => unsubscribe.then((u) => u()));
 
   return (
     <table>
@@ -34,7 +18,7 @@ export default function Temperatures(): JSX.Element {
           <th>Critical</th>
         </tr>
       </thead>
-      <For each={components()} fallback={<div>Загрузка...</div>}>
+      <For each={components()?.payload} fallback={<div>Загрузка...</div>}>
         {(c) => (
           <tr>
             <td>{c.label}</td>
