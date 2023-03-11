@@ -5,6 +5,7 @@ import { Route, Router, Routes } from "@solidjs/router";
 import Common from "./common/Common";
 import Temperatures from "./temperatures/Temperatures";
 import { Cpu } from "./cpu/Cpu";
+import { Disks } from "./disks/Disks";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
               <Route path="/" component={Common} />
               <Route path="/cpu" component={Cpu} />
               <Route path="/temperatures" component={Temperatures} />
+              <Route path="/disks" component={Disks} />
             </Routes>
           </div>
         </main>

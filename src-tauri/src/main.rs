@@ -4,6 +4,7 @@ mod componets;
 use componets::{
     common::get_common_data,
     cpu::{get_cpu_info, init_cpu_usege},
+    disks::get_disks_info,
     temperatures::init_temperatures_info,
 };
 
@@ -13,7 +14,11 @@ fn main() {
             init_temperatures_info(&window);
             init_cpu_usege(&window);
         })
-        .invoke_handler(tauri::generate_handler![get_cpu_info, get_common_data])
+        .invoke_handler(tauri::generate_handler![
+            get_cpu_info,
+            get_common_data,
+            get_disks_info
+        ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
