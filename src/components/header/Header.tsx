@@ -17,6 +17,12 @@ export default function Header(): JSX.Element {
         <A href="/disks" activeClass="active">
           Disks
         </A>
+        <A href="/network" activeClass="active">
+          Network
+        </A>
+        <A href="/processes" activeClass="active">
+          Processes
+        </A>
       </nav>
     </div>
   );

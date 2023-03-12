@@ -5,6 +5,8 @@ use componets::{
     common::get_common_data,
     cpu::{get_cpu_info, init_cpu_usege},
     disks::get_disks_info,
+    networks::init_network_usage,
+    processes::init_processes,
     temperatures::init_temperatures_info,
 };
 
@@ -13,6 +15,8 @@ fn main() {
         .on_page_load(|window, _payload| {
             init_temperatures_info(&window);
             init_cpu_usege(&window);
+            init_network_usage(&window);
+            init_processes(&window)
         })
         .invoke_handler(tauri::generate_handler![
             get_cpu_info,

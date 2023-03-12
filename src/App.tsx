@@ -6,6 +6,8 @@ import Common from "./common/Common";
 import Temperatures from "./temperatures/Temperatures";
 import { Cpu } from "./cpu/Cpu";
 import { Disks } from "./disks/Disks";
+import Network from "./network/network";
+import { Processes } from "./processes/Processes";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
               <Route path="/cpu" component={Cpu} />
               <Route path="/temperatures" component={Temperatures} />
               <Route path="/disks" component={Disks} />
+              <Route path="/network" component={Network} />
+              <Route path="/processes" component={Processes} />
             </Routes>
           </div>
         </main>
