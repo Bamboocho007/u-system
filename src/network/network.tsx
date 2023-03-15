@@ -1,34 +1,37 @@
 import { For, JSX } from "solid-js";
 import useListener from "../api/hooks/useListener";
 import { NetworkInfo } from "../api/interfaces/networkInfo";
+import S from "./NetworkStyles.module.scss";
 
 export default function Network(): JSX.Element {
   const network = useListener<NetworkInfo[]>("network-usage");
 
   return (
-    <table>
+    <table class={S["network-table"]}>
       <thead>
-        <tr>
-          <th>Name</th>
-          <th>Mac address</th>
-          <th>Received</th>
-          <th>Total received</th>
-          <th>Transmitted</th>
-          <th>Total transmitted</th>
+        <tr class={S["head"]}>
+          <th class={S["cell"]}>Name</th>
+          <th class={S["cell"]}>Mac address</th>
+          <th class={S["cell"]}>Received</th>
+          <th class={S["cell"]}>Total received</th>
+          <th class={S["cell"]}>Transmitted</th>
+          <th class={S["cell"]}>Total transmitted</th>
         </tr>
       </thead>
-      <For each={network()?.payload} fallback={<div>Загрузка...</div>}>
-        {(n) => (
-          <tr>
-            <td>{n.name}</td>
-            <td>{n.mac_address.join(":")}</td>
-            <td>{n.received}</td>
-            <td>{n.total_received}</td>
-            <td>{n.transmitted}</td>
-            <td>{n.total_transmitted}</td>
-          </tr>
-        )}
-      </For>
+      <tbody>
+        <For each={network()?.payload} fallback={<div>Загрузка...</div>}>
+          {(n, i) => (
+            <tr class={i() % 2 === 0 ? S["odd"] : S["even"]}>
+              <td class={S["cell"]}>{n.name}</td>
+              <td class={S["cell"]}>{n.mac_address.join(":")}</td>
+              <td class={S["cell"]}>{n.received}</td>
+              <td class={S["cell"]}>{n.total_received}</td>
+              <td class={S["cell"]}>{n.transmitted}</td>
+              <td class={S["cell"]}>{n.total_transmitted}</td>
+            </tr>
+          )}
+        </For>
+      </tbody>
     </table>
   );
 }

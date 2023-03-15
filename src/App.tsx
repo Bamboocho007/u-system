@@ -6,7 +6,7 @@ import Common from "./common/Common";
 import Temperatures from "./temperatures/Temperatures";
 import { Cpu } from "./cpu/Cpu";
 import { Disks } from "./disks/Disks";
-import Network from "./network/network";
+import Network from "./network/Network";
 import { Processes } from "./processes/Processes";
 
 function App() {

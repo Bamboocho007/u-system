@@ -1,5 +1,6 @@
 @import "./reset.scss";
 @import "./helpers.scss";
+@import "./colors.scss";
 
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
@@ -7,8 +8,8 @@
   line-height: 24px;
   font-weight: 400;
 
-  color: #0f0f0f;
-  background-color: #f6f6f6;
+  color: var(--white-210);
+  background-color: var(--black-20);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
